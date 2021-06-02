@@ -54,7 +54,7 @@ export default class MyDocument extends Document {
 			<link
 				rel="stylesheet"
 				media="print"
-				onLoad="this.onload=null;this.removeAttribute('media');"
+				onload="this.onload=null;this.removeAttribute('media');"
 				href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
 			/>
 
