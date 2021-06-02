@@ -51,12 +51,6 @@ export default class MyDocument extends Document {
 				href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
 				rel="stylesheet"
 			/>
-			<link
-				rel="stylesheet"
-				media="print"
-				onload="this.onload=null;this.removeAttribute('media');"
-				href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-			/>
 
         	<link rel="icon" href="https://rocketseat.com.br/favicon.ico" />
         </Head>
