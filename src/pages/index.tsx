@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from "next/head";
-import Link from "next/Link"
+import Link from "next/link"
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
