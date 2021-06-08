@@ -31,7 +31,9 @@ const Home: React.FC = () => {
 							<SousegurosLogo />
 						</Col>
 						<Col className="text-right text-end">
-							<a href="">Procurando por Seguro Vida Individual?</a>
+							<Link href="/">
+								<a>Procurando por Seguro Vida Individual?</a>
+							</Link>
 						</Col>
 					</Row>
 				</Container>

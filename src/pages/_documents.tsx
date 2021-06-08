@@ -41,9 +41,10 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt">
         <Head>
-          <meta charSet="utf-8" />
-		  <meta name="viewport" content="width=device-width, initial-scale=1" />
-		  <meta name="googlebot" content="noindex" />
+			<meta charSet="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+			<meta name="googlebot" content="noindex" />
+			<meta name="description" content="Seguro de vida em grupo - Cuidar do time é garantir a saúde financeira da sua empresa" />
 
           <link
 				rel="preconnect"
