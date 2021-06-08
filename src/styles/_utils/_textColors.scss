@@ -1,0 +1,14 @@
+.sou-color {
+    &--blue {
+        color: $blue;
+    }
+    &--gray {
+        color: $gray;
+    }
+    &--black {
+        color: $black;
+    }
+	&--white {
+        color: $white;
+    }
+}

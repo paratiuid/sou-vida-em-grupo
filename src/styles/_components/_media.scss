@@ -1,0 +1,11 @@
+.sou-media {
+	grid-gap: __remcalc(14);
+
+	&:not(:last-child) {
+		margin-bottom: __remcalc(45);
+	}
+
+	&--title {
+		@include setFontStyle(20,$font-weight-bolder,1.1em);
+	}
+}

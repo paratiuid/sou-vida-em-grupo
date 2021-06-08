@@ -1,0 +1,15 @@
+@mixin setFontStyle($size, $weight: "", $lineHeight: "", $kerning: "", $style: "") {
+    font-size: __remcalc($size);
+    @if $weight {
+        font-weight: $weight;
+    }
+    @if $lineHeight != "" {
+        line-height: $lineHeight;
+    }
+    @if $kerning != "" {
+        letter-spacing: $kerning;
+    }
+    @if $style != "" {
+        text-transform: $style;
+    }
+}

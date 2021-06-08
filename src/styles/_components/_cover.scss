@@ -1,0 +1,42 @@
+.sou-cover {
+	position: relative;
+	padding: __remcalc(33) 0 0;
+	//margin-bottom: __remcalc(78);
+	height: 714px;
+	z-index: $zindex-fixed;
+
+	&:before,
+	&:after {
+		position: absolute;
+		content: "";
+		z-index: -$zindex-dropdown;
+	}
+
+	&:before {
+		width: 37px;
+		height: 900px;
+		top: -118px;
+		left: 0;
+		background: $blue url(../../assets/cover.bg.png) top left no-repeat;
+	}
+
+	&:after {
+		width: 840px;
+		height: 540px;
+		top: 0;
+		right: 0;
+		background: url(../../assets/cover.bg.desktop.jpg) top right no-repeat;
+	}
+
+	&--subtitle {
+		margin-bottom: __remcalc(11);
+	}
+
+	&--title {
+		margin-bottom: __remcalc(44);
+	}
+
+	&--cards {
+		min-height: __remcalc(200);
+	}
+}

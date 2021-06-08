@@ -1,0 +1,35 @@
+.sou-card {
+	&--title {
+		@include setFontStyle(20,$font-weight-bolder,1.1em);
+		color: $blue;
+		margin-bottom: __remcalc(20);
+	}
+
+	&--text {
+		margin-bottom: __remcalc(5);
+		@include setFontStyle(18,$font-weight-normal,1.4em);
+	}
+
+	&--image {
+		margin-bottom: __remcalc(28);
+
+		svg {
+			width: __remcalc(58);
+			height: __remcalc(58);
+		}
+	}
+
+	&--deck {
+		margin-right: -32px;
+		margin-left: -32px;
+
+		.card {
+			margin-right: 32px;
+			margin-left: 32px;
+		}
+	}
+
+	.card-body {
+		padding: __remcalc(20);
+	}
+}

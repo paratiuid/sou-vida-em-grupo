@@ -1,0 +1,17 @@
+.sou-title {
+    &--xl {
+        @include setFontStyle(40,$font-weight-bolder,1.1em);
+    }
+    &--l {
+        @include setFontStyle(30,$font-weight-bolder,1.1em);
+    }
+    &--m {
+        @include setFontStyle(20,$font-weight-normal,1.1em);
+    }
+    &--s {
+        @include setFontStyle(18,$font-weight-normal,1.4em);
+    }
+    &--xs {
+        @include setFontStyle(16,$font-weight-bold,1.1em);
+    }
+}

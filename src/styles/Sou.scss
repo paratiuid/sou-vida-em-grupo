@@ -1,0 +1,103 @@
+@import "itcssImports/vars";
+
+@import "~bootstrap/scss/bootstrap";
+
+@import "./itcssImports/mixins";
+@import "./itcssImports/base";
+@import "./itcssImports/utils";
+@import "./itcssImports/components";
+
+body {
+	font-feature-settings: 'liga' off;
+	text-rendering:  geometricPrecision;
+	color: $gray;
+}
+
+* {
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: $blue_primary;
+}
+
+.sou-features {
+	padding: __remcalc(102) 0;
+
+	&--text {
+		padding-right: __remcalc(60);
+		@include setFontStyle(20,$font-weight-normal,1.5em);
+	}
+
+	&--about {
+		position: relative;
+		padding: __remcalc(155) 0;
+		margin-top: __remcalc(-26);
+		width: 98%;
+		height: 698px;
+		z-index: $zindex-sticky;
+		overflow: hidden;
+		filter: drop-shadow(0px 4px 19px rgba(0, 0, 0, 0.25));
+		border-radius: 0 5px 5px 0;
+		//background-image: linear-gradient(90.69deg, #0B317F 38.83%, rgba(11, 49, 127, 0) 100.6%);
+
+		.sou-features--title {
+			margin-bottom: __remcalc(64);
+		}
+
+		&:after,
+		&:before {
+			position: absolute;
+			content: "";
+			top: 0;
+			z-index: -$zindex-dropdown;
+		}
+
+		&:before {
+			width: 37px;
+			height: 698px;
+			left: 0;
+			bottom: 0;
+			background: url(../assets/features.about.bgline.jpg) bottom left no-repeat;
+		}
+
+		&:after {
+			left: 37px;
+			width: 100%;
+			height: 698px;
+			background: url(../assets/features.about.jpg) top right no-repeat;
+			background-size: cover;
+		}
+	}
+
+	&--advantages {
+		position: relative;
+		padding: __remcalc(80) 0;
+		background: url(../assets/features.advantages.jpg) top center no-repeat;
+		background-size: cover;
+		z-index: $zindex-sticky;
+
+		&:before {
+			position: absolute;
+			content: "";
+			display: block;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-image: linear-gradient(270.03deg, #FBFBFB 2.99%, rgba(255, 255, 255, 0) 98.37%), linear-gradient(86.65deg, #FFFFFF 22.07%, rgba(255, 255, 255, 0) 247.15%);
+			z-index: -$zindex-dropdown;
+		}
+
+		.sou-features--title {
+			@include setFontStyle(40,500,1.1em);
+		}
+	}
+}
