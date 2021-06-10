@@ -1,6 +1,10 @@
 .sou-header {
-	padding: __remcalc(33) 0;
-	height: 118px;
+	padding: __remcalc(25) 0;
+
+	@include media-breakpoint-up("sm") {
+		padding: __remcalc(33) 0;
+		height: 118px;
+	}
 
 	a {
 		font-size: __remcalc(14);

@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from "next/head";
 import Link from "next/link"
 
 import Container from 'react-bootstrap/Container'
@@ -10,27 +9,94 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Media from 'react-bootstrap/Media'
+import ListGroup from 'react-bootstrap/ListGroup'
+import Carousel from 'react-bootstrap/Carousel'
 
 import SousegurosLogo from "../assets/logo.sou.seguros.svg"
-import IconSecuirty from '../assets/icon.carbon.security.svg'
+import IconSecurity from '../assets/icon.carbon.security.svg'
 import IconPeople from '../assets/icon.people.svg'
 import IconBank from '../assets/icon.bank.svg'
 import IconCheckBox from '../assets/icon.checkbox.svg'
+import IconGrid from '../assets/icon.grid.svg'
+import IconFile from '../assets/icon.file.svg'
+import IconUserPlus from '../assets/icon.user.plus.svg'
+
+import LogoBradesco from "../assets/logo.bradesco.jpg"
+import LogoPorto from "../assets/logo.porto.seguro.jpg"
+import LogoUnimed from "../assets/logo.unimed.jpg"
+import LogoCaixa from "../assets/logo.caixa.jpg"
+import LogoBB from "../assets/logo.bb.jpg"
+import LogoSantander from "../assets/logo.santander.jpg"
 
 const Home: React.FC = () => {
+	const cardCover = [
+		{ title: "O nosso seguro de vida em grupo cobre morte por COVID-19", text: "Segurança empresarial"},
+		{ title: "Escolher as coberturas adequadas para sua empresa", text: "Receba apoio para"},
+		{ title: "Apólice da empresa e de cada funcionário em tempo real", text: "Oferecemos"}
+	],
+	cardInfo = [
+		{ image: <IconSecurity />, title: "Sua empresa protegida financeiramente", text: "Evite ações e indenizações que podem prejudicar a saúde financeira de sua empresa"},
+		{ image: <IconPeople />, title: "Funcionários e suas família protegidas", text: "É possível incluir coberturas para casos de invalidez e afastamento do trabalho, o que dá mais segurança ao funcionário e suas famílias"},
+		{ image: <IconBank />, title: "Estar em conformidade com sindicatos", text: "Algumas convenções coletivas exigem que os proprietários ofereçam esse benefício a seus funcionários"}
+	],
+	cardBeforeEngage = [
+		{ image: <IconGrid />, title: "Você informa os dados de sua empresa e segmento de atuação.", text: ""},
+		{ image: <IconFile />, title: "Enviamos propostas de 3 seguradoras, apontando as características de cada uma.", text: ""},
+	],
+	cardAfterEngage = [
+		{ image: <IconUserPlus />, title: "Fazemos a inclusão inicial de funcionários e emitimos a apólice.", text: ""},
+		{ image: <IconPeople />, title: "Oferecemos acesso ao sistema exclusivo de movimentação mensal de funcionários.", text: ""},
+	],
+	cardCompany = [
+		{ image: <IconUserPlus />, title: "", text: "Somos especialistas em Seguro de Vida Empresarial"},
+		{ image: <IconUserPlus />, title: "", text: "Atendemos todo o Brasil"},
+	]
+
+	const renderCard = (card, index) => {
+		return (
+			<Card key={index}>
+				<Card.Body>
+					<div className="sou-card--image">{card.image}</div>
+					<Card.Title className="sou-card--title">{card.title}</Card.Title>
+					{card.text ?
+						<Card.Text className="sou-card--text">{card.text}</Card.Text>
+						:
+						null
+					}
+				</Card.Body>
+			</Card>
+		)
+	}
+
+	const renderCardOnlyText = (card, index) => {
+		return (
+			<Card key={index}>
+				<Card.Body>
+					{card.text ?
+						<Card.Text className="sou-card--text">{card.text}</Card.Text>
+						:
+						null
+					}
+
+					{card.title ?
+						<Card.Title className="sou-card--title">{card.title}</Card.Title>
+						:
+						null
+					}
+				</Card.Body>
+			</Card>
+		)
+	}
+
 	return (
 		<div>
-			<Head>
-				<title>Seguro de Vida Coletivo para Funcionários | Sou Seguros</title>
-			</Head>
-
 			<header className="sou-header">
 				<Container>
 					<Row className="align-items-center">
 						<Col>
 							<SousegurosLogo />
 						</Col>
-						<Col className="text-right text-end">
+						<Col className="text-right text-end d-none d-sm-block">
 							<Link href="/">
 								<a>Procurando por Seguro Vida Individual?</a>
 							</Link>
@@ -43,8 +109,8 @@ const Home: React.FC = () => {
 				<Container>
 					<Row>
 						<Col md={5}>
-							<p className="sou-cover--text sou-title--s">Solicite uma cotação</p>
-							<h1 className="sou-cover--title sou-title--xl sou-color--blue">Seguro de Vida Coletivo <br/>para Funcionários</h1>
+							<p className="sou-cover--subtitle sou-title--s">Solicite uma cotação</p>
+							<h1 className="sou-cover--title sou-title--xl sou-color--blue">Seguro de Vida Coletivo <br className="d-none d-sm-block"/>para Funcionários</h1>
 						</Col>
 					</Row>
 
@@ -84,29 +150,12 @@ const Home: React.FC = () => {
 						</Col>
 					</Row>
 
-					<Row className="sou-cover--cards align-items-end">
+					<Row className="sou-cover--cards align-items-md-end">
 						<Container>
 							<Row>
 								<Col md={{span: 10, offset: 1}}>
 									<CardDeck className="sou-card sou-card--deck">
-										<Card>
-											<Card.Body>
-												<Card.Text className="sou-card--text">Segurança empresarial</Card.Text>
-												<Card.Title className="sou-card--title">O nosso seguro de vida em grupo cobre morte por COVID-19</Card.Title>
-											</Card.Body>
-										</Card>
-										<Card>
-											<Card.Body>
-												<Card.Text className="sou-card--text">Receba apoio para</Card.Text>
-												<Card.Title className="sou-card--title">Escolher as coberturas adequadas para sua empresa</Card.Title>
-											</Card.Body>
-										</Card>
-										<Card>
-											<Card.Body>
-												<Card.Text className="sou-card--text">Oferecemos</Card.Text>
-												<Card.Title className="sou-card--title">Apólice da empresa e de cada funcionário em tempo real</Card.Title>
-											</Card.Body>
-										</Card>
+										{cardCover.map(renderCardOnlyText)}
 									</CardDeck>
 								</Col>
 							</Row>
@@ -119,7 +168,7 @@ const Home: React.FC = () => {
 				<Container>
 					<Row>
 						<Col md={{span: 5, offset: 0}}>
-							<h2 className="sou-title--xl sou-features--title">Seguro de Vida Coletivo <br/>para Funcionários</h2>
+							<h2 className="sou-title--xl sou-features--title">O que é o Seguro de Vida em Grupo?</h2>
 							<p className="sou-features--text">O seguro de vida coletivo (ou em grupo) proporciona mais tranquilidade para empresas, funcionários e seus familiares, que tem como principal função  minimizar impactos ocasionados por eventos inesperados como acidentes ou falecimento de funcionários.</p>
 						</Col>
 					</Row>
@@ -131,37 +180,7 @@ const Home: React.FC = () => {
 					<Row>
 						<Col md={{span: 10, offset: 1}}>
 							<CardDeck className="sou-card sou-card--deck">
-								<Card>
-									<Card.Body>
-										<div className="sou-card--image">
-											<IconSecuirty />
-										</div>
-										<Card.Title className="sou-card--title">Sua empresa protegida financeiramente</Card.Title>
-										<Card.Text className="sou-card--text">
-										<Link href="/">
-											<a>Evite ações e indenizações </a>
-										</Link>
-										que podem prejudicar a saúde financeira de sua empresa</Card.Text>
-									</Card.Body>
-								</Card>
-								<Card>
-									<Card.Body>
-										<div className="sou-card--image">
-											<IconPeople />
-										</div>
-										<Card.Title className="sou-card--title">Funcionários e suas família protegidas</Card.Title>
-										<Card.Text className="sou-card--text">É possível incluir coberturas para casos de invalidez e afastamento do trabalho, o que dá mais segurança ao funcionário e suas famílias</Card.Text>
-									</Card.Body>
-								</Card>
-								<Card>
-									<Card.Body>
-										<div className="sou-card--image">
-											<IconBank />
-										</div>
-										<Card.Title className="sou-card--title">Estar em conformidade com sindicatos</Card.Title>
-										<Card.Text className="sou-card--text">Algumas convenções coletivas exigem que os proprietários ofereçam esse benefício a seus funcionários</Card.Text>
-									</Card.Body>
-								</Card>
+								{cardInfo.map(renderCard)}
 							</CardDeck>
 						</Col>
 					</Row>
@@ -193,6 +212,109 @@ const Home: React.FC = () => {
 					</Row>
 				</Container>
 			</section>
+
+			<section className="sou-features sou-features--how">
+				<Container>
+					<Row>
+						<Col md={6}>
+							<h3 className="sou-features--title sou-color--blue">Como funciona o atendimento a clientes de Seguro Vida Empresarial na Sou Seguros</h3>
+							<p className="sou-features--text">Somos especialistas no segmento de <br className="d-none d-md-block" />Seguro de Vida para Empresas.</p>
+						</Col>
+					</Row>
+					<Row className="sou-features--how-items">
+						<Col md={4}>
+							<h3 className="sou-features--subtitle sou-features--subtitle-icon sou-features--subtitle-icon-blue">Antes de <br />contratar o seguro</h3>
+						</Col>
+						<Col md={8}>
+							<CardDeck className="sou-card sou-card--deck">
+								{cardBeforeEngage.map(renderCard)}
+							</CardDeck>
+
+							<div className="sou-features--how-items-info">
+								<p>Para apoiar na escolha da melhor opção de seguradora para seu negócio, trabalhamos com uma abordagem especializada que se baseia em 3 pontos principais: as melhores taxas; a real necessidade do seguro para sua empresa; e, a seguradora com menos burocracia e solidez.</p>
+							</div>
+						</Col>
+					</Row>
+
+					<Row className="sou-features--how-items">
+						<Col md={4}>
+							<h3 className="sou-features--subtitle sou-features--subtitle-icon sou-features--subtitle-icon-dark-blue">Depois de <br />contratar o seguro</h3>
+						</Col>
+						<Col md={8}>
+							<CardDeck className="sou-card sou-card--deck">
+								{cardAfterEngage.map(renderCard)}
+							</CardDeck>
+
+							<div className="sou-features--how-items-info">
+								<p>Neste sistema, oferecido exclusivamente para clientes Sou Seguros, sua empresa poderá:</p>
+								<ListGroup variant="flush">
+									<ListGroup.Item>Incluir e excluir funcionários da apólice</ListGroup.Item>
+									<ListGroup.Item>Visualizar a apólice e as coberturas contratadas para sua empresa a qualquer momento</ListGroup.Item>
+									<ListGroup.Item>Baixar o Certificado Individual de cada funcionário</ListGroup.Item>
+									<ListGroup.Item>Baixar o Certificado Individual de cada funcionário</ListGroup.Item>
+								</ListGroup>
+							</div>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+
+			<section className="sou-features sou-features--company sou-bg--darkblue">
+				<Container>
+					<Row className="align-items-center">
+						<Col md={4}>
+							<h3 className="sou-features--title sou-color--white">20</h3>
+							<p className="sou-features--subtitle sou-color--white">anos de mercado</p>
+						</Col>
+						<Col md={8}>
+							<CardDeck className="sou-card sou-card--dark sou-card--deck">
+								{cardCompany.map(renderCard)}
+							</CardDeck>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+
+			<footer  className="sou-footer">
+				<Container>
+					<Row className="sou-footer--partners">
+						<Col md={4}>
+							<h3 className="sou-features--subtitle sou-title--m">Trabalhamos com <br />todas as seguradoras</h3>
+						</Col>
+						<Col md={8}>
+							<div className="d-flex justify-content-around mb-2">
+								<img className="m-4" width={40} height={53} src={LogoPorto} />
+								<img className="m-4" width={72} height={75} src={LogoBradesco} />
+								<img className="m-4" width={41} height={41} src={LogoUnimed} />
+							</div>
+							<div className="d-flex justify-content-around mb-2">
+								<img className="m-4" width={99} height={35} src={LogoCaixa} />
+								<img className="m-4" width={113} height={25} src={LogoBB} />
+								<img className="m-4" width={116} height={41} src={LogoSantander} />
+							</div>
+						</Col>
+					</Row>
+					<Row className="sou-footer--colophon">
+						<Col md={6}>
+							<div className="sou-footer--logo">
+								<SousegurosLogo />
+							</div>
+							<div className="sou-footer--info">
+								Sou Administradora e Corretora de Seguros LTDA
+								<br />
+								CNPJ: 25.281.864/0001-50
+								<br />
+								SUSEP: 10.2034785.5
+							</div>
+						</Col>
+						<Col md={6} className="text-md-right text-md-end">
+							<Link href="/">
+								<a className="btn btn-primary btn-sm-block">Iniciar cotação</a>
+							</Link>
+						</Col>
+					</Row>
+				</Container>
+			</footer>
 		</div>
 	)
 }

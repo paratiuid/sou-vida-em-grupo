@@ -1,0 +1,24 @@
+.sou-footer {
+	padding: __remcalc(61) 0;
+
+	@include media-breakpoint-up("md") {
+		padding: __remcalc(92) 0;
+	}
+
+	&--logo {
+		margin-bottom: __remcalc(29);
+	}
+
+	&--partners {
+		border-bottom: 1px solid #EEE;
+		padding-bottom: __remcalc(46);
+	}
+
+	&--colophon {
+		padding-top: __remcalc(46);
+	}
+
+	&--info {
+		margin-bottom: __remcalc(39);
+	}
+}

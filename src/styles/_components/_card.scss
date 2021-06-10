@@ -1,13 +1,25 @@
 .sou-card {
 	&--title {
-		@include setFontStyle(20,$font-weight-bolder,1.1em);
+		@include setFontStyle(16,$font-weight-bolder,1.2em);
 		color: $blue;
 		margin-bottom: __remcalc(20);
+
+		@include media-breakpoint-up("md") {
+			@include setFontStyle(20,$font-weight-bolder,1.1em);
+		}
 	}
 
 	&--text {
 		margin-bottom: __remcalc(5);
-		@include setFontStyle(18,$font-weight-normal,1.4em);
+		@include setFontStyle(16,$font-weight-normal,1.3em);
+
+		@include media-breakpoint-up("md") {
+			@include setFontStyle(18,$font-weight-normal,1.4em);
+		}
+
+		.sou-bg--darkblue & {
+			color: $white;
+		}
 	}
 
 	&--image {
@@ -29,7 +41,26 @@
 		}
 	}
 
+	.card {
+		.sou-bg--darkblue & {
+			background-color: inherit;
+			border: none;
+
+			&:not(:last-child) {
+				@include media-breakpoint-down("sm") {
+					margin-top: __remcalc(65);
+					margin-bottom: __remcalc(65);
+				}
+			}
+		}
+	}
+
 	.card-body {
-		padding: __remcalc(20);
+		padding: 0;
+
+		&:not(.sou-bg--darkblue &)  {
+			padding: __remcalc(20);
+		}
+
 	}
 }

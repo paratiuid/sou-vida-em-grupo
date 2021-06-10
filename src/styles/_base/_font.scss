@@ -1,6 +1,10 @@
 .sou-title {
     &--xl {
-        @include setFontStyle(40,$font-weight-bolder,1.1em);
+		@include setFontStyle(30,$font-weight-bolder,1.1em);
+
+		@include media-breakpoint-up("sm") {
+			@include setFontStyle(40,$font-weight-bolder,1.1em);
+		}
     }
     &--l {
         @include setFontStyle(30,$font-weight-bolder,1.1em);

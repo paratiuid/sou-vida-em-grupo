@@ -1,6 +1,6 @@
 .sou-cover {
 	position: relative;
-	padding: __remcalc(33) 0 0;
+	padding: __remcalc(15) 0 0;
 	//margin-bottom: __remcalc(78);
 	height: 714px;
 	z-index: $zindex-fixed;
@@ -13,19 +13,27 @@
 	}
 
 	&:before {
-		width: 37px;
+		width: 10px;
 		height: 900px;
 		top: -118px;
 		left: 0;
 		background: $blue url(../../assets/cover.bg.png) top left no-repeat;
+
+		@include media-breakpoint-up("md") {
+			width: 37px;
+		}
 	}
 
-	&:after {
-		width: 840px;
-		height: 540px;
-		top: 0;
-		right: 0;
-		background: url(../../assets/cover.bg.desktop.jpg) top right no-repeat;
+	@include media-breakpoint-up("md") {
+		padding: __remcalc(33) 0 0;
+
+		&:after {
+			width: 840px;
+			height: 540px;
+			top: 0;
+			right: 0;
+			background: url(../../assets/cover.bg.desktop.jpg) top right no-repeat;
+		}
 	}
 
 	&--subtitle {
@@ -33,7 +41,11 @@
 	}
 
 	&--title {
-		margin-bottom: __remcalc(44);
+		margin-bottom: __remcalc(27);
+
+		@include media-breakpoint-up("md") {
+			margin-bottom: __remcalc(44);
+		}
 	}
 
 	&--cards {
