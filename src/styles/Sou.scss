@@ -65,6 +65,11 @@ a {
 	color: $blue_primary;
 }
 
+.btn-primary {
+	background-color: $blue_light;
+	border-color: $blue_light;
+}
+
 .container,
 .container-fluid,
 .container-xl,

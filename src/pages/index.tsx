@@ -1,16 +1,18 @@
 import React from 'react';
 import Link from "next/link"
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
-import Media from 'react-bootstrap/Media'
-import ListGroup from 'react-bootstrap/ListGroup'
-import Carousel from 'react-bootstrap/Carousel'
+import {
+	Container,
+	Row,
+	Col,
+	Card,
+	CardDeck,
+	Media,
+	ListGroup,
+	Carousel
+} from 'react-bootstrap'
+
+import FormContact from "./_components/_form"
 
 import SousegurosLogo from "../assets/logo.sou.seguros.svg"
 import IconSecurity from '../assets/icon.carbon.security.svg'
@@ -20,6 +22,8 @@ import IconCheckBox from '../assets/icon.checkbox.svg'
 import IconGrid from '../assets/icon.grid.svg'
 import IconFile from '../assets/icon.file.svg'
 import IconUserPlus from '../assets/icon.user.plus.svg'
+import IconLike from '../assets/icon.like.svg'
+import IconInvestiments from '../assets/icon.investiments.svg'
 
 import LogoBradesco from "../assets/logo.bradesco.jpg"
 import LogoPorto from "../assets/logo.porto.seguro.jpg"
@@ -48,8 +52,8 @@ const Home: React.FC = () => {
 		{ image: <IconPeople />, title: "Oferecemos acesso ao sistema exclusivo de movimentação mensal de funcionários.", text: ""},
 	],
 	cardCompany = [
-		{ image: <IconUserPlus />, title: "", text: "Somos especialistas em Seguro de Vida Empresarial"},
-		{ image: <IconUserPlus />, title: "", text: "Atendemos todo o Brasil"},
+		{ image: <IconLike />, title: "", text: "Somos especialistas em Seguro de Vida Empresarial"},
+		{ image: <IconInvestiments />, title: "", text: "Atendemos todo o Brasil"},
 	]
 
 	const renderCard = (card, index) => {
@@ -116,37 +120,7 @@ const Home: React.FC = () => {
 
 					<Row>
 						<Col md={5} xl={4}>
-							<Form>
-								<Form.Group>
-									<p>Proteja sua empresa e seus <br/> funcionários financeiramente.</p>
-								</Form.Group>
-								<Form.Group controlId="">
-									<Form.Control type="text" placeholder="Seu nome" />
-								</Form.Group>
-								<Form.Group controlId="">
-									<Form.Control type="tel" placeholder="Telefone para contato por Whatsapp" />
-								</Form.Group>
-								<Form.Group controlId="">
-									<Form.Control
-										as="select"
-									>
-										<option value="0">Número de funcionários</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</Form.Control>
-								</Form.Group>
-								<Form.Group>
-									<Button variant="primary" type="submit" block>
-										Iniciar cotação
-									</Button>
-								</Form.Group>
-								<Form.Group className="text-center">
-									<Form.Text className="text-muted">
-										Receba em minutos ao menos 3 cotações
-									</Form.Text>
-								</Form.Group>
-							</Form>
+							<FormContact />
 						</Col>
 					</Row>
 
