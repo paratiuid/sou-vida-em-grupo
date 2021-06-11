@@ -32,12 +32,14 @@
 	}
 
 	&--deck {
-		margin-right: -32px;
-		margin-left: -32px;
+		@include media-breakpoint-up("xl") {
+			margin-right: -32px;
+			margin-left: -32px;
 
-		.card {
-			margin-right: 32px;
-			margin-left: 32px;
+			.card {
+				margin-right: 32px;
+				margin-left: 32px;
+			}
 		}
 	}
 

@@ -108,14 +108,14 @@ const Home: React.FC = () => {
 			<section className="sou-cover">
 				<Container>
 					<Row>
-						<Col md={5}>
+						<Col md={8} xl={5}>
 							<p className="sou-cover--subtitle sou-title--s">Solicite uma cotação</p>
 							<h1 className="sou-cover--title sou-title--xl sou-color--blue">Seguro de Vida Coletivo <br className="d-none d-sm-block"/>para Funcionários</h1>
 						</Col>
 					</Row>
 
 					<Row>
-						<Col md={4}>
+						<Col md={5} xl={4}>
 							<Form>
 								<Form.Group>
 									<p>Proteja sua empresa e seus <br/> funcionários financeiramente.</p>
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
 					<Row className="sou-cover--cards align-items-md-end">
 						<Container>
 							<Row>
-								<Col md={{span: 10, offset: 1}}>
+								<Col xl={{span: 10, offset: 1}}>
 									<CardDeck className="sou-card sou-card--deck">
 										{cardCover.map(renderCardOnlyText)}
 									</CardDeck>
@@ -167,7 +167,7 @@ const Home: React.FC = () => {
 			<section className="sou-features sou-features--about sou-color--white">
 				<Container>
 					<Row>
-						<Col md={{span: 5, offset: 0}}>
+						<Col md={{span: 7, offset: 0}} lg={{span: 5, offset: 0}}>
 							<h2 className="sou-title--xl sou-features--title">O que é o Seguro de Vida em Grupo?</h2>
 							<p className="sou-features--text">O seguro de vida coletivo (ou em grupo) proporciona mais tranquilidade para empresas, funcionários e seus familiares, que tem como principal função  minimizar impactos ocasionados por eventos inesperados como acidentes ou falecimento de funcionários.</p>
 						</Col>
@@ -178,7 +178,7 @@ const Home: React.FC = () => {
 			<section className="sou-features">
 				<Container>
 					<Row>
-						<Col md={{span: 10, offset: 1}}>
+						<Col xl={{span: 10, offset: 1}}>
 							<CardDeck className="sou-card sou-card--deck">
 								{cardInfo.map(renderCard)}
 							</CardDeck>
@@ -190,10 +190,10 @@ const Home: React.FC = () => {
 			<section className="sou-features sou-features--advantages">
 				<Container>
 					<Row className="align-items-center">
-						<Col md={4}>
+						<Col lg={4}>
 							<h3 className="sou-features--title sou-color--blue">Empresas com Seguro de Vida Coletivo têm vantagens:</h3>
 						</Col>
-						<Col md={8}>
+						<Col lg={8}>
 							<Media className="sou-media">
 								<IconCheckBox />
 								<Media.Body>
@@ -216,7 +216,7 @@ const Home: React.FC = () => {
 			<section className="sou-features sou-features--how">
 				<Container>
 					<Row>
-						<Col md={6}>
+						<Col lg={6}>
 							<h3 className="sou-features--title sou-color--blue">Como funciona o atendimento a clientes de Seguro Vida Empresarial na Sou Seguros</h3>
 							<p className="sou-features--text">Somos especialistas no segmento de <br className="d-none d-md-block" />Seguro de Vida para Empresas.</p>
 						</Col>

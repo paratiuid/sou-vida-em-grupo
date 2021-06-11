@@ -33,6 +33,10 @@
 			top: 0;
 			right: 0;
 			background: url(../../assets/cover.bg.desktop.jpg) top right no-repeat;
+
+			@include media-breakpoint-between(sm, md) {
+				background-size: 65% auto;
+			}
 		}
 	}
 
