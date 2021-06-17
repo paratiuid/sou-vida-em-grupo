@@ -1,8 +1,9 @@
 export default async function contacts(req) {
 
-    let body = req.body
+    let body = req.body;
 	let firstName = body.name.split(" ").slice(0,-1).join(" ");
-	let lastName = body.name.split(" ").slice(-1).join(" ");
+	let lastName = body.name.split(" ").slice(-1).join("");
+
 	let rtn = {
 		id: null,
 		status: true

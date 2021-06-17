@@ -5,14 +5,19 @@ import {
 	Button
 } from 'react-bootstrap';
 
-function FormContact() {
-	const [contactName, setContactName] = useState('')
-  	const [contactPhone, setContactPhone] = useState('')
-	const [contactLifes, setContactLifes] = useState('')
+function FormContact(props) {
+	// const [contactName, setContactName] = useState('')
+  	// const [contactPhone, setContactPhone] = useState('')
+	// const [contactLifes, setContactLifes] = useState('')
 	const [contactCompany, setContactCompany] = useState('')
 	const [contactCnpj, setContactCnpj] = useState('')
 	const [contactEmail, setContactEmail] = useState('')
 	const [validated, setValidated] = useState(false);
+	// const [loading, setLoading] = useState(false)
+	// const [success, setSuccess] = useState(false)
+	// const [form, setForm] = useState(true)
+
+	console.log(props.contactName);
 
 	const handleForm = async event => {
 		const form = event.currentTarget;
@@ -22,26 +27,32 @@ function FormContact() {
 			event.stopPropagation();
 		}
 
-		setValidated(true);
+		setValidated(true)
 
-		if(!validated) {
+		if(validated == true) {
 			let body = {
-				name: contactName,
-				phone: contactPhone,
-				lifes: contactLifes,
+				name: props.contactName,
+				phone: props.contactPhone,
+				lifes: props.contactLifes,
 				company: contactCompany,
 				cnpj: contactCnpj,
 				email: contactEmail
 			}
 
+			setLoading(true);
+
 			await fetch('/api/registerLead',
 				{
 					method: 'POST',
-					body: JSON.stringify(body)
+					body: JSON.stringify(body),
+					headers: new Headers({'content-type': 'application/json'})
 				}
 			)
 			.then(response => {
 				console.debug(response)
+				setLoading(false)
+				setForm(false)
+				setSuccess(true)
 			})
 			.catch(error => {
 				console.error(error)
@@ -51,49 +62,10 @@ function FormContact() {
 
 	return (
 		<Form noValidate validated={validated} onSubmit={handleForm}>
-			<Form.Group>
-				<p>Proteja sua empresa e seus <br/> funcionários financeiramente.</p>
-			</Form.Group>
-			<Form.Group controlId="name">
-				<Form.Control
-					type="text"
-					placeholder="Seu nome"
-					value={contactName}
-					onChange={e => setContactName(e.target.value)}
-					required
-				/>
-				<Form.Control.Feedback type="invalid">Preencha o seu nome</Form.Control.Feedback>
-			</Form.Group>
-			<Form.Group controlId="phone">
-				<Form.Control
-					type="tel"
-					placeholder="Telefone para contato por Whatsapp"
-					value={contactPhone}
-					onChange={e => setContactPhone(e.target.value)}
-					required
-				/>
-				<Form.Control.Feedback type="invalid">Preencha o seu whatsapp</Form.Control.Feedback>
-			</Form.Group>
-			<Form.Group controlId="lifes">
-				<Form.Control
-					as="select"
-					value={contactLifes}
-					onChange={e => setContactLifes(e.target.value)}
-					required
-				>
-					<option value="">Número de funcionários</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="3">4</option>
-					<option value="3">5</option>
-					<option value="3">6</option>
-				</Form.Control>
-				<Form.Control.Feedback type="invalid">Selecione o número de funcionários</Form.Control.Feedback>
-			</Form.Group>
 			<Form.Group controlId="company">
 				<Form.Control
 					type="tel"
+					name="contactCompany"
 					placeholder="Empresa"
 					value={contactCompany}
 					onChange={e => setContactCompany(e.target.value)}
@@ -104,6 +76,7 @@ function FormContact() {
 			<Form.Group controlId="cnpj">
 				<Form.Control
 					type="tel"
+					name="contactCnpj"
 					placeholder="CNPJ"
 					value={contactCnpj}
 					onChange={e => setContactCnpj(e.target.value)}
@@ -114,6 +87,7 @@ function FormContact() {
 			<Form.Group controlId="email">
 				<Form.Control
 					type="tel"
+					name="contactEmail"
 					placeholder="E-mail"
 					value={contactEmail}
 					onChange={e => setContactEmail(e.target.value)}
@@ -131,13 +105,8 @@ function FormContact() {
 			</Form.Group>
 			<Form.Group>
 				<Button variant="primary" type="submit" block>
-					Iniciar cotação
+					Enviar
 				</Button>
-			</Form.Group>
-			<Form.Group className="text-center">
-				<Form.Text className="text-muted">
-					Receba em minutos ao menos 3 cotações
-				</Form.Text>
 			</Form.Group>
 		</Form>
 	)

@@ -1,0 +1,20 @@
+.sou-modal {
+	padding-top: __remcalc(100);
+	color: $white;
+	background-color: $blue;
+
+	.sou-title--xl {
+		margin-bottom: __remcalc(63);
+		@include setFontStyle(27,$font-weight-bolder,1em);
+	}
+
+	.modal-content {
+		background-color: transparent;
+		border: none;
+	}
+
+	.modal-lg, .modal-xl {
+		width: 100%;
+		max-width: max-content;
+	}
+}

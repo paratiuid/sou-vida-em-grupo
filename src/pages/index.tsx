@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from "react";
 import Link from "next/link"
 
 import {
@@ -9,7 +9,10 @@ import {
 	CardDeck,
 	Media,
 	ListGroup,
-	Carousel
+	Carousel,
+	Modal,
+	Form,
+	Button
 } from 'react-bootstrap'
 
 import FormContact from "./_components/_form"
@@ -32,7 +35,50 @@ import LogoCaixa from "../assets/logo.caixa.jpg"
 import LogoBB from "../assets/logo.bb.jpg"
 import LogoSantander from "../assets/logo.santander.jpg"
 
-const Home: React.FC = () => {
+function ModalLead(props) {
+	console.log("modal: ",props);
+
+	return (
+		<Modal className="sou-modal" size="lg" {...props} aria-labelledby="contained-modal-title-vcenter">
+			<a onClick={props.onHide}>Fechar</a>
+			<Modal.Body className="show-grid">
+				<Container>
+					<div className="sou-form" style={{display: props.form ? "block" : "none"}}>
+						<Row>
+							<Col md={5}>
+								<h3 className="sou-title--xl sou-color--white">Insira seus dados e um de nossos consultores lhe apresentará as melhores opções de seguro para sua empresa.</h3>
+								<p className="sou-color--white">(O Seguro de Vida em Grupo exige um número mínimo de 03 vidas cobertas, com idade entre 14 a 65 anos)</p>
+							</Col>
+							<Col md={{ span: 6, offset: 1 }}>
+								<FormContact {...props}/>
+							</Col>
+						</Row>
+					</div>
+
+					<div className="sou-loading" style={{display: props.loading ? "block" : "none"}}></div>
+
+					<div className="sou-form-success" style={{display: props.success ? "block" : "none"}}>
+						<h3 className="sou-title--xl sou-color--white">Solicitação enviada com sucesso!</h3>
+						<p className="sou-color--white">Em breve entraremos em contato.</p>
+					</div>
+				</Container>
+			</Modal.Body>
+	  	</Modal>
+	);
+}
+
+const Home = () => {
+	const [state, setState] = useState({
+		contactName: "",
+		contactPhone: "",
+		contactLifes: "",
+		loading: false,
+		success: false,
+		form: true
+	})
+	const [modalShow, setModalShow] = useState(false)
+	const [validated, setValidated] = useState(false)
+
 	const cardCover = [
 		{ title: "O nosso seguro de vida em grupo cobre morte por COVID-19", text: "Segurança empresarial"},
 		{ title: "Escolher as coberturas adequadas para sua empresa", text: "Receba apoio para"},
@@ -92,6 +138,30 @@ const Home: React.FC = () => {
 		)
 	}
 
+	const changeState = (event) => {
+		const value = event.target.value;
+
+        setState({
+			...state,
+			[event.target.name]: value
+		});
+    };
+
+	const handleForm = async event => {
+		const form = event.currentTarget;
+		event.preventDefault();
+
+		if (form.checkValidity() === false) {
+			event.stopPropagation();
+		}
+
+		setValidated(true);
+
+		if(validated == true) {
+			setModalShow(true);
+		}
+	};
+
 	return (
 		<div>
 			<header className="sou-header">
@@ -120,7 +190,61 @@ const Home: React.FC = () => {
 
 					<Row>
 						<Col md={5} xl={4}>
-							<FormContact />
+							<Form noValidate validated={validated} onSubmit={handleForm}>
+								<Form.Group>
+									<p>Proteja sua empresa e seus <br/> funcionários financeiramente.</p>
+								</Form.Group>
+								<Form.Group controlId="name">
+									<Form.Control
+										type="text"
+										name="contactName"
+										placeholder="Seu nome"
+										value={state.contactName}
+										onChange={changeState}
+										required
+									/>
+									<Form.Control.Feedback type="invalid">Preencha o seu nome</Form.Control.Feedback>
+								</Form.Group>
+								<Form.Group controlId="phone">
+									<Form.Control
+										type="tel"
+										name="contactPhone"
+										placeholder="Telefone para contato por Whatsapp"
+										value={state.contactPhone}
+										onChange={changeState}
+										required
+									/>
+									<Form.Control.Feedback type="invalid">Preencha o seu whatsapp</Form.Control.Feedback>
+								</Form.Group>
+								<Form.Group controlId="lifes">
+									<Form.Control
+										as="select"
+										name="contactLifes"
+										value={state.contactLifes}
+										onChange={changeState}
+										required
+									>
+										<option value="">Número de funcionários</option>
+										<option value="03 a 10 vidas">03 a 10 vidas</option>
+										<option value="11 a 50 vidas">11 a 50 vidas</option>
+										<option value="51 a 100 vidas">51 a 100 vidas</option>
+										<option value="101 a 500 vidas">101 a 500 vidas</option>
+										<option value="501 a 1.000 vidas">501 a 1.000 vidas</option>
+										<option value="Mais de 1.001 vidas">Mais de 1.001 vidas</option>
+									</Form.Control>
+									<Form.Control.Feedback type="invalid">Selecione o número de funcionários</Form.Control.Feedback>
+								</Form.Group>
+								<Form.Group>
+									<Button variant="primary" type="submit" block>
+										Iniciar cotação
+									</Button>
+								</Form.Group>
+								<Form.Group className="text-center">
+									<Form.Text className="text-muted">
+										Receba em minutos ao menos 3 cotações
+									</Form.Text>
+								</Form.Group>
+							</Form>
 						</Col>
 					</Row>
 
@@ -289,6 +413,8 @@ const Home: React.FC = () => {
 					</Row>
 				</Container>
 			</footer>
+
+			<ModalLead {...state} show={modalShow} onHide={() => setModalShow(false)} />
 		</div>
 	)
 }
