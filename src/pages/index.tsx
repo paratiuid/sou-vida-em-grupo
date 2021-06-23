@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import Link from "next/link"
-import MaskedFormControl from 'react-bootstrap-maskedinput'
+import { NextPage } from 'next'
 
 import {
 	Container,
@@ -10,13 +10,13 @@ import {
 	CardDeck,
 	Media,
 	ListGroup,
-	Carousel,
 	Modal,
 	Form,
 	Button
 } from 'react-bootstrap'
 
 import FormContact from "./_components/_form"
+import { phone } from "./_components/_masks";
 
 import SousegurosLogo from "../assets/logo.sou.seguros.svg"
 import IconSecurity from '../assets/icon.carbon.security.svg'
@@ -137,6 +137,14 @@ const Home = () => {
 		});
     };
 
+	const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+		let input = e.currentTarget.name;
+
+		if (input === "contactphone") {
+			phone(e);
+		}
+	},[]);
+
 	const handleForm = async event => {
 		const form = event.currentTarget;
 		event.preventDefault();
@@ -196,13 +204,13 @@ const Home = () => {
 									<Form.Control.Feedback type="invalid">Preencha o seu nome</Form.Control.Feedback>
 								</Form.Group>
 								<Form.Group controlId="phone">
-									<MaskedFormControl
+									<Form.Control
 										type="tel"
 										name="contactphone"
 										placeholder="Telefone para contato por Whatsapp"
 										value={state.contactphone}
+										onKeyUp={handleKeyUp}
 										onChange={changeState}
-										mask="(11) 11111.1111"
 										required
 									/>
 									<Form.Control.Feedback type="invalid">Preencha o seu whatsapp</Form.Control.Feedback>

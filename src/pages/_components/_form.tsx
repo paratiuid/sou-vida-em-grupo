@@ -1,9 +1,12 @@
-import React, {useState} from "react";
-import MaskedFormControl from 'react-bootstrap-maskedinput'
+import React, {isValidElement, useCallback, useState} from "react";
 import {
 	Form,
 	Button
 } from 'react-bootstrap';
+
+import { cnpj, phone, validateCnpj, validateEmail } from "./_masks";
+
+import IconSuccess from '../../assets/icon.success.svg'
 
 function FormContact(props) {
 	const [state, setState] = useState({
@@ -13,7 +16,10 @@ function FormContact(props) {
 		contactagree: "",
 		loading: false,
 		success: false,
-		error: false
+		error: false,
+		isInvalid: false,
+		cnpjValid: false,
+		emailValid: false
 	})
 	const [validated, setValidated] = useState(false);
 
@@ -26,16 +32,32 @@ function FormContact(props) {
 		});
     };
 
+	const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+		let input = e.currentTarget.name;
 
-	const handleForm = async event => {
-		const form = event.currentTarget;
-		event.preventDefault();
+		if (input === "contactcnpj") {
+			cnpj(e);
+			console.log("cnpj válido:", validateCnpj(e.currentTarget.value));
 
-		if (form.checkValidity() === false) {
-			event.stopPropagation();
+			if(e.currentTarget.maxLength >= 18)
+				setState({...state, cnpjValid: validateCnpj(e.currentTarget.value)})
 		}
 
+		if (input === "contactphone") {
+			phone(e);
+		}
+
+		if (input === "contactemail") {
+			console.log("email válido:", validateCnpj(e.currentTarget.value));
+		}
+	},[]);
+
+	const handleForm = async event => {
+		event.preventDefault();
+
 		setValidated(true)
+
+		console.log("handle", state.cnpjValid, state.emailValid);
 
 		if(validated == true) {
 			let body = {
@@ -71,6 +93,7 @@ function FormContact(props) {
 		}
 	};
 
+
 	return (
 		<>
 		{state.error &&
@@ -94,13 +117,13 @@ function FormContact(props) {
 				<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
 			</Form.Group>
 			<Form.Group controlId="cnpj">
-				<MaskedFormControl
+				<Form.Control
 					type="tel"
 					name="contactcnpj"
 					placeholder="CNPJ"
 					value={state.contactcnpj}
 					onChange={changeState}
-					mask="11.111.111/1111-11"
+					onKeyUp={handleKeyUp}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o CNPJ</Form.Control.Feedback>
@@ -112,6 +135,7 @@ function FormContact(props) {
 					placeholder="E-mail"
 					value={state.contactemail}
 					onChange={changeState}
+					onKeyUp={handleKeyUp}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o e-mail</Form.Control.Feedback>
@@ -140,6 +164,9 @@ function FormContact(props) {
 
 		{state.success &&
 		<div className="sou-form-success">
+			<div className="sou-modal-icon">
+				<IconSuccess />
+			</div>
 			<h3 className="sou-title--xl sou-color--white">Solicitação enviada com sucesso!</h3>
 			<p className="sou-color--white">Em breve entraremos em contato.</p>
 		</div>

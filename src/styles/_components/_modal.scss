@@ -18,6 +18,10 @@
 		max-width: max-content;
 	}
 
+	&-icon {
+		margin-bottom: __remcalc(33);
+	}
+
 	&-close {
 		position: absolute;
 		right: __remcalc(15);
