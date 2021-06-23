@@ -65,6 +65,10 @@ a {
 	color: $blue_primary;
 }
 
+.btn {
+	position: relative;
+}
+
 .btn-primary {
 	background-color: $blue_light;
 	border-color: $blue_light;

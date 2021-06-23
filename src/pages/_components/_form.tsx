@@ -1,23 +1,31 @@
-import { useState } from "react";
+import React, {useState} from "react";
+import MaskedFormControl from 'react-bootstrap-maskedinput'
 import {
-	Alert,
 	Form,
 	Button
 } from 'react-bootstrap';
 
 function FormContact(props) {
-	// const [contactName, setContactName] = useState('')
-  	// const [contactPhone, setContactPhone] = useState('')
-	// const [contactLifes, setContactLifes] = useState('')
-	const [contactCompany, setContactCompany] = useState('')
-	const [contactCnpj, setContactCnpj] = useState('')
-	const [contactEmail, setContactEmail] = useState('')
+	const [state, setState] = useState({
+		contactcompany: "",
+		contactcnpj: "",
+		contactemail: "",
+		contactagree: "",
+		loading: false,
+		success: false,
+		error: false
+	})
 	const [validated, setValidated] = useState(false);
-	// const [loading, setLoading] = useState(false)
-	// const [success, setSuccess] = useState(false)
-	// const [form, setForm] = useState(true)
 
-	console.log(props.contactName);
+	const changeState = (event) => {
+		const value = event.target.value;
+
+        setState({
+			...state,
+			[event.target.name]: value
+		});
+    };
+
 
 	const handleForm = async event => {
 		const form = event.currentTarget;
@@ -31,15 +39,15 @@ function FormContact(props) {
 
 		if(validated == true) {
 			let body = {
-				name: props.contactName,
-				phone: props.contactPhone,
-				lifes: props.contactLifes,
-				company: contactCompany,
-				cnpj: contactCnpj,
-				email: contactEmail
+				name: props.contactname,
+				phone: props.contactphone,
+				lifes: props.contactlifes,
+				company: state.contactcompany,
+				cnpj: state.contactcnpj,
+				email: state.contactemail
 			}
 
-			setLoading(true);
+			setState({...state, loading: true});
 
 			await fetch('/api/registerLead',
 				{
@@ -50,9 +58,12 @@ function FormContact(props) {
 			)
 			.then(response => {
 				console.debug(response)
-				setLoading(false)
-				setForm(false)
-				setSuccess(true)
+				setState({...state, loading: false});
+
+				if (response.ok)
+					setState({...state, success: true});
+				else
+					setState({...state, error: true});
 			})
 			.catch(error => {
 				console.error(error)
@@ -61,25 +72,35 @@ function FormContact(props) {
 	};
 
 	return (
+		<>
+		{state.error &&
+		<div className="sou-form-error">
+			<h3 className="sou-title--xl sou-color--white">Desculpe, tivemos um problema.</h3>
+			<p className="sou-color--white">Por favor, tente novamente.</p>
+		</div>
+		}
+
+		{!state.success &&
 		<Form noValidate validated={validated} onSubmit={handleForm}>
 			<Form.Group controlId="company">
 				<Form.Control
 					type="tel"
-					name="contactCompany"
+					name="contactcompany"
 					placeholder="Empresa"
-					value={contactCompany}
-					onChange={e => setContactCompany(e.target.value)}
+					value={state.contactcompany}
+					onChange={changeState}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
 			</Form.Group>
 			<Form.Group controlId="cnpj">
-				<Form.Control
+				<MaskedFormControl
 					type="tel"
-					name="contactCnpj"
+					name="contactcnpj"
 					placeholder="CNPJ"
-					value={contactCnpj}
-					onChange={e => setContactCnpj(e.target.value)}
+					value={state.contactcnpj}
+					onChange={changeState}
+					mask="11.111.111/1111-11"
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o CNPJ</Form.Control.Feedback>
@@ -87,28 +108,43 @@ function FormContact(props) {
 			<Form.Group controlId="email">
 				<Form.Control
 					type="tel"
-					name="contactEmail"
+					name="contactemail"
 					placeholder="E-mail"
-					value={contactEmail}
-					onChange={e => setContactEmail(e.target.value)}
+					value={state.contactemail}
+					onChange={changeState}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o e-mail</Form.Control.Feedback>
 			</Form.Group>
 			<Form.Group>
 				<Form.Check
+					name="contactagree"
 					type="checkbox"
+					value={state.contactagree}
+					onChange={changeState}
 					label="Li e concordo com a Política de Privacidade"
 					feedback="Você deve aceitar a Política de Privacidade."
 					required
 				/>
 			</Form.Group>
 			<Form.Group>
-				<Button variant="primary" type="submit" block>
+				<Button className="" variant="primary" type="submit" block disabled={state.loading}>
+					{state.loading &&
+						<span className="sou-loading"></span>
+					}
 					Enviar
 				</Button>
 			</Form.Group>
 		</Form>
+		}
+
+		{state.success &&
+		<div className="sou-form-success">
+			<h3 className="sou-title--xl sou-color--white">Solicitação enviada com sucesso!</h3>
+			<p className="sou-color--white">Em breve entraremos em contato.</p>
+		</div>
+		}
+		</>
 	)
 }
 

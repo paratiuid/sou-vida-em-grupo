@@ -17,4 +17,10 @@
 		width: 100%;
 		max-width: max-content;
 	}
+
+	&-close {
+		position: absolute;
+		right: __remcalc(15);
+		top: -50px;
+	}
 }

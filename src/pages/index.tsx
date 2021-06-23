@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, {useState} from "react";
 import Link from "next/link"
+import MaskedFormControl from 'react-bootstrap-maskedinput'
 
 import {
 	Container,
@@ -27,6 +28,7 @@ import IconFile from '../assets/icon.file.svg'
 import IconUserPlus from '../assets/icon.user.plus.svg'
 import IconLike from '../assets/icon.like.svg'
 import IconInvestiments from '../assets/icon.investiments.svg'
+import IconClose from '../assets/icon.close.svg'
 
 import LogoBradesco from "../assets/logo.bradesco.jpg"
 import LogoPorto from "../assets/logo.porto.seguro.jpg"
@@ -36,14 +38,12 @@ import LogoBB from "../assets/logo.bb.jpg"
 import LogoSantander from "../assets/logo.santander.jpg"
 
 function ModalLead(props) {
-	console.log("modal: ",props);
-
 	return (
 		<Modal className="sou-modal" size="lg" {...props} aria-labelledby="contained-modal-title-vcenter">
-			<a onClick={props.onHide}>Fechar</a>
+			<a className="sou-modal-close" onClick={props.onHide}><IconClose /></a>
 			<Modal.Body className="show-grid">
 				<Container>
-					<div className="sou-form" style={{display: props.form ? "block" : "none"}}>
+					<div className="sou-form">
 						<Row>
 							<Col md={5}>
 								<h3 className="sou-title--xl sou-color--white">Insira seus dados e um de nossos consultores lhe apresentará as melhores opções de seguro para sua empresa.</h3>
@@ -54,13 +54,6 @@ function ModalLead(props) {
 							</Col>
 						</Row>
 					</div>
-
-					<div className="sou-loading" style={{display: props.loading ? "block" : "none"}}></div>
-
-					<div className="sou-form-success" style={{display: props.success ? "block" : "none"}}>
-						<h3 className="sou-title--xl sou-color--white">Solicitação enviada com sucesso!</h3>
-						<p className="sou-color--white">Em breve entraremos em contato.</p>
-					</div>
 				</Container>
 			</Modal.Body>
 	  	</Modal>
@@ -68,16 +61,13 @@ function ModalLead(props) {
 }
 
 const Home = () => {
-	const [state, setState] = useState({
-		contactName: "",
-		contactPhone: "",
-		contactLifes: "",
-		loading: false,
-		success: false,
-		form: true
-	})
 	const [modalShow, setModalShow] = useState(false)
 	const [validated, setValidated] = useState(false)
+	const [state, setState] = useState({
+		contactname: "",
+		contactphone: "",
+		contactlifes: ""
+	})
 
 	const cardCover = [
 		{ title: "O nosso seguro de vida em grupo cobre morte por COVID-19", text: "Segurança empresarial"},
@@ -197,21 +187,22 @@ const Home = () => {
 								<Form.Group controlId="name">
 									<Form.Control
 										type="text"
-										name="contactName"
+										name="contactname"
 										placeholder="Seu nome"
-										value={state.contactName}
+										value={state.contactname}
 										onChange={changeState}
 										required
 									/>
 									<Form.Control.Feedback type="invalid">Preencha o seu nome</Form.Control.Feedback>
 								</Form.Group>
 								<Form.Group controlId="phone">
-									<Form.Control
+									<MaskedFormControl
 										type="tel"
-										name="contactPhone"
+										name="contactphone"
 										placeholder="Telefone para contato por Whatsapp"
-										value={state.contactPhone}
+										value={state.contactphone}
 										onChange={changeState}
+										mask="(11) 11111.1111"
 										required
 									/>
 									<Form.Control.Feedback type="invalid">Preencha o seu whatsapp</Form.Control.Feedback>
@@ -219,8 +210,8 @@ const Home = () => {
 								<Form.Group controlId="lifes">
 									<Form.Control
 										as="select"
-										name="contactLifes"
-										value={state.contactLifes}
+										name="contactlifes"
+										value={state.contactlifes}
 										onChange={changeState}
 										required
 									>
