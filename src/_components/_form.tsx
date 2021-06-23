@@ -1,10 +1,10 @@
-import React, {isValidElement, useCallback, useState} from "react";
+import React, { useCallback, useState} from "react";
 import {
 	Form,
 	Button
 } from 'react-bootstrap';
 
-import { cnpj, phone, validateCnpj, validateEmail } from "./_masks";
+import { maskcnpj, maskphone, validateCnpj, validateEmail } from "./_masks";
 
 import IconSuccess from '../../assets/icon.success.svg'
 
@@ -36,7 +36,7 @@ function FormContact(props) {
 		let input = e.currentTarget.name;
 
 		if (input === "contactcnpj") {
-			cnpj(e);
+			maskcnpj(e);
 			console.log("cnpj válido:", validateCnpj(e.currentTarget.value));
 
 			if(e.currentTarget.maxLength >= 18)
@@ -44,22 +44,28 @@ function FormContact(props) {
 		}
 
 		if (input === "contactphone") {
-			phone(e);
+			maskphone(e);
 		}
 
 		if (input === "contactemail") {
-			console.log("email válido:", validateCnpj(e.currentTarget.value));
+			console.log("email válido:", validateEmail(e.currentTarget.value));
 		}
 	},[]);
 
-	const handleForm = async event => {
+	const handleFormModal = async event => {
 		event.preventDefault();
+		const form = event.currentTarget;
 
-		setValidated(true)
+		if (form.checkValidity() === false) {
+		  event.preventDefault();
+		  event.stopPropagation();
+		}
+
+		setValidated(true);
 
 		console.log("handle", state.cnpjValid, state.emailValid);
 
-		if(validated == true) {
+		if(validated == true && state.cnpjValid == false && state.emailValid == false) {
 			let body = {
 				name: props.contactname,
 				phone: props.contactphone,
@@ -104,7 +110,7 @@ function FormContact(props) {
 		}
 
 		{!state.success &&
-		<Form noValidate validated={validated} onSubmit={handleForm}>
+		<Form validated={validated} onSubmit={handleFormModal}>
 			<Form.Group controlId="company">
 				<Form.Control
 					type="tel"

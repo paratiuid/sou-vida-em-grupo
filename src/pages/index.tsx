@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from "react";
 import Link from "next/link"
-import { NextPage } from 'next'
 
 import {
 	Container,
@@ -15,8 +14,8 @@ import {
 	Button
 } from 'react-bootstrap'
 
-import FormContact from "./_components/_form"
-import { phone } from "./_components/_masks";
+import FormContact from "../_components/_form"
+import { maskphone } from "../_components/_masks";
 
 import SousegurosLogo from "../assets/logo.sou.seguros.svg"
 import IconSecurity from '../assets/icon.carbon.security.svg'
@@ -141,7 +140,7 @@ const Home = () => {
 		let input = e.currentTarget.name;
 
 		if (input === "contactphone") {
-			phone(e);
+			maskphone(e);
 		}
 	},[]);
 
