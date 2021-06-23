@@ -6,7 +6,7 @@ import {
 
 import { maskcnpj, maskphone, validateCnpj, validateEmail } from "./_masks";
 
-import IconSuccess from '../../assets/icon.success.svg'
+import IconSuccess from '../assets/icon.success.svg'
 
 function FormContact(props) {
 	const [state, setState] = useState({
