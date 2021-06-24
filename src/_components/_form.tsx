@@ -53,11 +53,12 @@ function FormContact(props) {
 	},[]);
 
 	const handleSubmit = async event => {
+		event.preventDefault();
 		const form = event.currentTarget;
 
 		if (form.checkValidity() === false) {
-		  event.preventDefault();
-		  event.stopPropagation();
+			event.preventDefault();
+			event.stopPropagation();
 		}
 
 		setValidatedModal(true);
