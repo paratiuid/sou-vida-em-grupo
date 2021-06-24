@@ -21,7 +21,7 @@ function FormContact(props) {
 		cnpjValid: false,
 		emailValid: false
 	})
-	const [validated, setValidated] = useState(false);
+	const [validated, setValidatedModal] = useState(false);
 
 	const changeState = (event) => {
 		const value = event.target.value;
@@ -52,8 +52,7 @@ function FormContact(props) {
 		}
 	},[]);
 
-	const handleFormModal = async event => {
-		event.preventDefault();
+	const handleSubmit = async event => {
 		const form = event.currentTarget;
 
 		if (form.checkValidity() === false) {
@@ -61,7 +60,7 @@ function FormContact(props) {
 		  event.stopPropagation();
 		}
 
-		setValidated(true);
+		setValidatedModal(true);
 
 		console.log("handle", state.cnpjValid, state.emailValid);
 
@@ -110,7 +109,7 @@ function FormContact(props) {
 		}
 
 		{!state.success &&
-		<Form validated={validated} onSubmit={handleFormModal}>
+		<Form noValidate validated={validated} onSubmit={handleSubmit}>
 			<Form.Group controlId="company">
 				<Form.Control
 					type="tel"
