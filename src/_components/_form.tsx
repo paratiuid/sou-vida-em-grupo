@@ -18,10 +18,10 @@ function FormContact(props) {
 		success: false,
 		error: false,
 		isInvalid: false,
-		cnpjValid: false,
-		emailValid: false
+		cnpjValid: true,
+		emailValid: true
 	})
-	const [validatedModal, setValidatedModal] = useState(false);
+	const [validated, setValidatedModal] = useState(false);
 
 	const changeState = (event) => {
 		const value = event.target.value;
@@ -32,26 +32,49 @@ function FormContact(props) {
 		});
     };
 
-	const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-		let input = e.currentTarget.name;
+	const handleKeyUp = (event) => {
+		let t = event.currentTarget;
+		let input = t.name;
 
 		if (input === "contactcnpj") {
-			maskcnpj(e);
+			maskcnpj(event);
 			
-			if(e.currentTarget.value.length >= 18) {
-				setState({...state, [e.currentTarget.name]: e.currentTarget.value, cnpjValid: validateCnpj(e.currentTarget.value)})
-				console.log(state.cnpjValid);
+			if(t.value.length >= 18) {
+				setState({...state, [t.name]: t.value, cnpjValid: validateCnpj(t.value)})
 			}
 		}
 
-		if (input === "contactphone") {
-			maskphone(e);
-		}
+		// if (input === "contactphone") {
+		// 	maskphone(event);
+		// }
 
-		if (input === "contactemail") {
-			console.log("email válido:", validateEmail(e.currentTarget.value));
-		}
-	},[]);
+		// if (input === "contactemail") {
+		// 	setState({...state, [t.name]: t.value, cnpjValid: validateCnpj(t.value)})
+		// }
+    };
+
+	// const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+	// 	let input = e.currentTarget.name;
+
+	// 	if (input === "contactcnpj") {
+	// 		maskcnpj(e);
+			
+	// 		if(e.currentTarget.value.length >= 18) {
+	// 			console.log("onkeyup",state);
+	// 			setState({...state, [e.currentTarget.name]: e.currentTarget.value, cnpjValid: validateCnpj(e.currentTarget.value)})
+	// 		}
+	// 	}
+
+	// 	if (input === "contactphone") {
+	// 		maskphone(e);
+	// 	}
+
+	// 	if (input === "contactemail") {
+	// 		console.log("email válido:", validateEmail(e.currentTarget.value));
+	// 	}
+	// },[]);
+
+
 
 	const handleSubmit = async event => {
 		event.preventDefault();
@@ -111,15 +134,14 @@ function FormContact(props) {
 		}
 
 		{!state.success &&
-		<Form noValidate validated={validatedModal} onSubmit={handleSubmit}>
+		<Form noValidate validated={validated} onSubmit={handleSubmit}>
 			<Form.Group controlId="company">
 				<Form.Control
-					type="tel"
+					type="text"
 					name="contactcompany"
 					placeholder="Empresa"
 					value={state.contactcompany}
 					onChange={changeState}
-					isInvalid={(state.contactcompany == "")}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
@@ -139,12 +161,13 @@ function FormContact(props) {
 			</Form.Group>
 			<Form.Group controlId="email">
 				<Form.Control
-					type="tel"
+					type="email"
 					name="contactemail"
 					placeholder="E-mail"
 					value={state.contactemail}
 					onChange={changeState}
 					onKeyUp={handleKeyUp}
+					isInvalid={!state.emailValid}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o e-mail</Form.Control.Feedback>

@@ -137,7 +137,8 @@ const Home = () => {
     };
 
 	const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-		let input = e.currentTarget.name;
+		let t = e.currentTarget,
+			input = t.name;
 
 		if (input === "contactphone") {
 			maskphone(e);
