@@ -37,14 +37,11 @@ function FormContact(props) {
 
 		if (input === "contactcnpj") {
 			maskcnpj(e);
-			e.currentTarget.setCustomValidity(validateCnpj(e.currentTarget.value) ? "" : "CNPJ Inválido");
-
-			if(!validateCnpj(e.currentTarget.value)) {
-				setValidatedModal(true);
+			
+			if(e.currentTarget.value.length >= 18) {
+				setState({...state, [e.currentTarget.name]: e.currentTarget.value, cnpjValid: validateCnpj(e.currentTarget.value)})
+				console.log(state.cnpjValid);
 			}
-
-			if(e.currentTarget.maxLength >= 18)
-				setState({...state, cnpjValid: validateCnpj(e.currentTarget.value)})
 		}
 
 		if (input === "contactphone") {
@@ -122,6 +119,7 @@ function FormContact(props) {
 					placeholder="Empresa"
 					value={state.contactcompany}
 					onChange={changeState}
+					isInvalid={(state.contactcompany == "")}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
@@ -134,6 +132,7 @@ function FormContact(props) {
 					value={state.contactcnpj}
 					onChange={changeState}
 					onKeyUp={handleKeyUp}
+					isInvalid={!state.cnpjValid}
 					required
 				/>
 				<Form.Control.Feedback type="invalid">Preencha o CNPJ</Form.Control.Feedback>
