@@ -21,7 +21,7 @@ function FormContact(props) {
 		cnpjValid: false,
 		emailValid: false
 	})
-	const [validated, setValidatedModal] = useState(false);
+	const [validatedModal, setValidatedModal] = useState(false);
 
 	const changeState = (event) => {
 		const value = event.target.value;
@@ -37,7 +37,11 @@ function FormContact(props) {
 
 		if (input === "contactcnpj") {
 			maskcnpj(e);
-			console.log("cnpj válido:", validateCnpj(e.currentTarget.value));
+			e.currentTarget.setCustomValidity(validateCnpj(e.currentTarget.value) ? "" : "CNPJ Inválido");
+
+			if(!validateCnpj(e.currentTarget.value)) {
+				setValidatedModal(true);
+			}
 
 			if(e.currentTarget.maxLength >= 18)
 				setState({...state, cnpjValid: validateCnpj(e.currentTarget.value)})
@@ -110,7 +114,7 @@ function FormContact(props) {
 		}
 
 		{!state.success &&
-		<Form noValidate validated={validated} onSubmit={handleSubmit}>
+		<Form noValidate validated={validatedModal} onSubmit={handleSubmit}>
 			<Form.Group controlId="company">
 				<Form.Control
 					type="tel"

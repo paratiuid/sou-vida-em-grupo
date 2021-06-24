@@ -146,15 +146,15 @@ const Home = () => {
 
 	const handleForm = async event => {
 		const form = event.currentTarget;
+		const formValidity = form.checkValidity();
+
 		event.preventDefault();
-
-		if (form.checkValidity() === false) {
+		if (formValidity === false) {
 			event.stopPropagation();
-		}
-
+		} 
 		setValidated(true);
 
-		if(validated == true) {
+		if(formValidity) {
 			setModalShow(true);
 		}
 	};
