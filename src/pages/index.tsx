@@ -169,8 +169,8 @@ const Home = () => {
 							<SousegurosLogo />
 						</Col>
 						<Col className="text-right text-end d-none d-sm-block">
-							<Link href="https://wwws.portoseguro.com.br/vendaonline/vidamaissimples/home.ns?cod=1cb14e806b2a47d790e6576605dbe147&utm_source=2T4BGJ&utm_medium=geradorLinks&utm_campaign=GeradordeLinks_JC90YJ&utm_content=SOU_SEGUROS" target="_blank">
-								<a>Procurando por Seguro Vida Individual?</a>
+							<Link href="https://wwws.portoseguro.com.br/vendaonline/vidamaissimples/home.ns?cod=1cb14e806b2a47d790e6576605dbe147&utm_source=2T4BGJ&utm_medium=geradorLinks&utm_campaign=GeradordeLinks_JC90YJ&utm_content=SOU_SEGUROS">
+								<a target="_blank">Procurando por Seguro Vida Individual?</a>
 							</Link>
 						</Col>
 					</Row>
