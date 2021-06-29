@@ -413,7 +413,7 @@ const Home = () => {
 				</Container>
 			</footer>
 
-			<ModalLead {...state} backdrop="static" show={modalShow} onHide={() => setModalShow(false)} />
+			<ModalLead {...state} backdrop="static" show={modalShow} onShow={() => window.location.hash = "modal"} onExit={() => window.location.hash = ""} onHide={() => setModalShow(false)} />
 		</div>
 	)
 }

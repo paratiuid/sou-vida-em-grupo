@@ -110,10 +110,13 @@ function FormContact(props) {
 				console.debug(response)
 				setState({...state, loading: false});
 
-				if (response.ok)
+				if (response.ok) {
+					window.location.hash = "sucesso";
 					setState({...state, success: true});
-				else
+				} else {
+					window.location.hash = "erro";
 					setState({...state, error: true});
+				}
 			})
 			.catch(error => {
 				console.error(error)

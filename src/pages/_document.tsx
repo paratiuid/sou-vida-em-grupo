@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
 				<link rel="preconnect" href="https://static.hotjar.com" />
 				<link rel="dns-prefetch" href="https://static.hotjar.com" />
 
-				<link rel="preconnect" href="https://fonts.gstatic.com"/>
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 				<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 
 				<script dangerouslySetInnerHTML={{ __html: `(function( w, d, s, l, i ) {
