@@ -3,10 +3,9 @@ export default async function contacts(req) {
     let body = req.body;
 	let firstName = body.name.split(" ").slice(0,-1).join(" ");
 	let lastName = body.name.split(" ").slice(-1).join("");
-	let ddd = body.phone.substring(0,3);
-	let number = body.phone.substring(3,9);
-
-	debugger;
+	let cleanPhone = body.phone.replace(/\D/g, "");
+	let ddd = cleanPhone.substring(0,2);
+	let number = cleanPhone.substring(2,11);
 
 	let rtn = {
 		id: null,
