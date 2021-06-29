@@ -1,5 +1,7 @@
 import React, { useCallback, useState} from "react";
 import {
+	Row,
+	Col,
 	Form,
 	Button
 } from 'react-bootstrap';
@@ -44,51 +46,19 @@ function FormContact(props) {
 				setState({...state, [t.name]: t.value, cnpjValid: validateCnpj(t.value)})
 			}
 		}
-
-		// if (input === "contactphone") {
-		// 	maskphone(event);
-		// }
-
-		// if (input === "contactemail") {
-		// 	setState({...state, [t.name]: t.value, cnpjValid: validateCnpj(t.value)})
-		// }
     };
-
-	// const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-	// 	let input = e.currentTarget.name;
-
-	// 	if (input === "contactcnpj") {
-	// 		maskcnpj(e);
-
-	// 		if(e.currentTarget.value.length >= 18) {
-	// 			console.log("onkeyup",state);
-	// 			setState({...state, [e.currentTarget.name]: e.currentTarget.value, cnpjValid: validateCnpj(e.currentTarget.value)})
-	// 		}
-	// 	}
-
-	// 	if (input === "contactphone") {
-	// 		maskphone(e);
-	// 	}
-
-	// 	if (input === "contactemail") {
-	// 		console.log("email válido:", validateEmail(e.currentTarget.value));
-	// 	}
-	// },[]);
-
-
 
 	const handleSubmit = async event => {
 		event.preventDefault();
 		const form = event.currentTarget;
+		const hasValidFiels = form.checkValidity();
 
-		if (form.checkValidity() === false) {
-			event.preventDefault();
+		if (hasValidFiels === false) {
 			event.stopPropagation();
+			setValidatedModal(true);
 		}
 
-		setValidatedModal(true);
-
-		if(validated == true && state.cnpjValid == true && state.emailValid == true) {
+		if(hasValidFiels == true && state.cnpjValid == true && state.emailValid == true) {
 			let body = {
 				name: props.contactname,
 				phone: props.contactphone,
@@ -125,7 +95,6 @@ function FormContact(props) {
 		}
 	};
 
-
 	return (
 		<>
 		{state.error &&
@@ -136,64 +105,77 @@ function FormContact(props) {
 		}
 
 		{!state.success &&
-		<Form noValidate validated={validated} onSubmit={handleSubmit}>
-			<Form.Group controlId="company">
-				<Form.Control
-					type="text"
-					name="contactcompany"
-					placeholder="Empresa"
-					value={state.contactcompany}
-					onChange={changeState}
-					required
-				/>
-				<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
-			</Form.Group>
-			<Form.Group controlId="cnpj">
-				<Form.Control
-					type="tel"
-					name="contactcnpj"
-					placeholder="CNPJ"
-					value={state.contactcnpj}
-					onChange={changeState}
-					onKeyUp={handleKeyUp}
-					isInvalid={!state.cnpjValid}
-					required
-				/>
-				<Form.Control.Feedback type="invalid">Preencha o CNPJ</Form.Control.Feedback>
-			</Form.Group>
-			<Form.Group controlId="email">
-				<Form.Control
-					type="email"
-					name="contactemail"
-					placeholder="E-mail"
-					value={state.contactemail}
-					onChange={changeState}
-					onKeyUp={handleKeyUp}
-					isInvalid={!state.emailValid}
-					required
-				/>
-				<Form.Control.Feedback type="invalid">Preencha o e-mail</Form.Control.Feedback>
-			</Form.Group>
-			<Form.Group>
-				<Form.Check
-					name="contactagree"
-					type="checkbox"
-					value={state.contactagree}
-					onChange={changeState}
-					label="Li e concordo com a Política de Privacidade"
-					feedback="Você deve aceitar a Política de Privacidade."
-					required
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Button className="" variant="primary" type="submit" block disabled={state.loading}>
-					{state.loading &&
-						<span className="sou-loading"></span>
-					}
-					Enviar
-				</Button>
-			</Form.Group>
-		</Form>
+		<>
+		<div className="sou-form">
+			<Row>
+				<Col md={5}>
+					<h3 className="sou-title--xl sou-color--white">Insira seus dados e um de nossos consultores lhe apresentará as melhores opções de seguro para sua empresa.</h3>
+					<p className="sou-color--white">(O Seguro de Vida em Grupo exige um número mínimo de 03 vidas cobertas, com idade entre 14 a 65 anos)</p>
+				</Col>
+
+				<Col md={{ span: 6, offset: 1 }}>
+					<Form noValidate validated={validated} onSubmit={handleSubmit}>
+						<Form.Group controlId="company">
+							<Form.Control
+								type="text"
+								name="contactcompany"
+								placeholder="Empresa"
+								value={state.contactcompany}
+								onChange={changeState}
+								required
+							/>
+							<Form.Control.Feedback type="invalid">Preencha o nome da empresa</Form.Control.Feedback>
+						</Form.Group>
+						<Form.Group controlId="cnpj">
+							<Form.Control
+								type="tel"
+								name="contactcnpj"
+								placeholder="CNPJ"
+								value={state.contactcnpj}
+								onChange={changeState}
+								onKeyUp={handleKeyUp}
+								isInvalid={!state.cnpjValid}
+								required
+							/>
+							<Form.Control.Feedback type="invalid">Preencha o CNPJ</Form.Control.Feedback>
+						</Form.Group>
+						<Form.Group controlId="email">
+							<Form.Control
+								type="email"
+								name="contactemail"
+								placeholder="E-mail"
+								value={state.contactemail}
+								onChange={changeState}
+								onKeyUp={handleKeyUp}
+								isInvalid={!state.emailValid}
+								required
+							/>
+							<Form.Control.Feedback type="invalid">Preencha o e-mail</Form.Control.Feedback>
+						</Form.Group>
+						<Form.Group>
+							<Form.Check
+								name="contactagree"
+								type="checkbox"
+								value={state.contactagree}
+								onChange={changeState}
+								label="Li e concordo com a Política de Privacidade"
+								feedback="Você deve aceitar a Política de Privacidade."
+								required
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Button className="" variant="primary" type="submit" block disabled={state.loading}>
+								{state.loading &&
+									<span className="sou-loading"></span>
+								}
+								Enviar
+							</Button>
+						</Form.Group>
+					</Form>
+				</Col>
+			</Row>
+		</div>
+		</>
 		}
 
 		{state.success &&

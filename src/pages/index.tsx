@@ -43,17 +43,7 @@ function ModalLead(props) {
 			<a className="sou-modal-close" onClick={props.onHide}><IconClose /></a>
 			<Modal.Body className="show-grid">
 				<Container>
-					<div className="sou-form">
-						<Row>
-							<Col md={5}>
-								<h3 className="sou-title--xl sou-color--white">Insira seus dados e um de nossos consultores lhe apresentará as melhores opções de seguro para sua empresa.</h3>
-								<p className="sou-color--white">(O Seguro de Vida em Grupo exige um número mínimo de 03 vidas cobertas, com idade entre 14 a 65 anos)</p>
-							</Col>
-							<Col md={{ span: 6, offset: 1 }}>
-								<FormContact {...props}/>
-							</Col>
-						</Row>
-					</div>
+					<FormContact {...props}/>
 				</Container>
 			</Modal.Body>
 	  	</Modal>
@@ -171,7 +161,7 @@ const Home = () => {
 						</Col>
 						<Col className="text-right text-end d-none d-sm-block">
 							<Link href="https://wwws.portoseguro.com.br/vendaonline/vidamaissimples/home.ns?cod=1cb14e806b2a47d790e6576605dbe147&utm_source=2T4BGJ&utm_medium=geradorLinks&utm_campaign=GeradordeLinks_JC90YJ&utm_content=SOU_SEGUROS">
-								<a target="_blank">Procurando por Seguro Vida Individual?</a>
+								<a target="_blank" rel="noopener">Procurando por Seguro Vida Individual?</a>
 							</Link>
 						</Col>
 					</Row>
@@ -388,7 +378,7 @@ const Home = () => {
 							<div className="d-flex justify-content-around mb-2">
 								<img className="m-4" width={99} height={35} src={LogoCaixa} alt="Caixa Seguradora" />
 								<img className="m-4" width={113} height={25} src={LogoBB} alt="BB Seguros" />
-								<img className="m-4" width={116} height={41} src={LogoSantander} alt="Santander Seguros" />
+								<img className="m-4" width={116} height={43} src={LogoSantander} alt="Santander Seguros" />
 							</div>
 						</Col>
 					</Row>
