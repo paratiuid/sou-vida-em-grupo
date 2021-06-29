@@ -1,3 +1,13 @@
 .form-group {
 	margin-bottom: __remcalc(17);
 }
+
+.sou-form {
+	&-error {
+		margin-bottom: __(20);
+
+		.sou-title--xl {
+			margin-bottom: __remcalc(20);
+		}
+	}
+}
