@@ -3,6 +3,10 @@ export default async function contacts(req) {
     let body = req.body;
 	let firstName = body.name.split(" ").slice(0,-1).join(" ");
 	let lastName = body.name.split(" ").slice(-1).join("");
+	let ddd = body.phone.substring(0,3);
+	let number = body.phone.substring(3,9);
+
+	debugger;
 
 	let rtn = {
 		id: null,
@@ -20,20 +24,20 @@ export default async function contacts(req) {
 					"value": body.company
 				},
 				{
+					"field":"6",
+					"value": body.cnpj
+				},
+				{
 					"field":"3",
 					"value": body.lifes
 				},
 				{
 					"field":"4",
-					"value": body.phone
+					"value": ddd
 				},
 				{
 					"field":"5",
-					"value": body.phone
-				},
-				{
-					"field":"6",
-					"value": body.cnpj
+					"value": number
 				}
 			]
 		}

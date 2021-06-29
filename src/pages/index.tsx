@@ -152,7 +152,7 @@ const Home = () => {
 		event.preventDefault();
 		if (formValidity === false) {
 			event.stopPropagation();
-		} 
+		}
 		setValidated(true);
 
 		if(formValidity) {
