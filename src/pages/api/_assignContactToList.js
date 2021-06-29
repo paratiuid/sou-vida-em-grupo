@@ -3,8 +3,8 @@ export default async function assignContactToList(id) {
 	let rtn = {
 		status: true,
 		message: "OK"
-	},
-	automation = process.env.API_AUTOMATION.split(",");
+	};
+	// automation = process.env.API_AUTOMATION.split(",");
 
 	let assignToList = await reqAssingToList(id);
 	if(!assignToList) {
@@ -57,30 +57,30 @@ async function reqAssingToList(contactId) {
 }
 
 
-async function reqAutomation(contactId, automationId) {
-	let reqObject = {
-		"contactAutomation": {
-			"contact": contactId,
-			"automation": automationId
-		}
-	}
+// async function reqAutomation(contactId, automationId) {
+// 	let reqObject = {
+// 		"contactAutomation": {
+// 			"contact": contactId,
+// 			"automation": automationId
+// 		}
+// 	}
 
-	const req = await fetch(
-        `${process.env.API_URL}/contactAutomations`,
-        {
-            method: 'POST',
-            body: JSON.stringify(reqObject),
-            headers: {
-                'Api-Token': process.env.API_TOKEN,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        }
-    )
+// 	const req = await fetch(
+//         `${process.env.API_URL}/contactAutomations`,
+//         {
+//             method: 'POST',
+//             body: JSON.stringify(reqObject),
+//             headers: {
+//                 'Api-Token': process.env.API_TOKEN,
+//                 'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//             },
+//         }
+//     )
 
-	if (req.status !== 201 && req.status !== 200) {
-		return false;
-    }
+// 	if (req.status !== 201 && req.status !== 200) {
+// 		return false;
+//     }
 
-	return true;
-}
+// 	return true;
+// }
