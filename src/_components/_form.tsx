@@ -38,7 +38,7 @@ function FormContact(props) {
 
 		if (input === "contactcnpj") {
 			maskcnpj(event);
-			
+
 			if(t.value.length >= 18) {
 				setState({...state, [t.name]: t.value, cnpjValid: validateCnpj(t.value)})
 			}
@@ -58,7 +58,7 @@ function FormContact(props) {
 
 	// 	if (input === "contactcnpj") {
 	// 		maskcnpj(e);
-			
+
 	// 		if(e.currentTarget.value.length >= 18) {
 	// 			console.log("onkeyup",state);
 	// 			setState({...state, [e.currentTarget.name]: e.currentTarget.value, cnpjValid: validateCnpj(e.currentTarget.value)})
@@ -89,7 +89,7 @@ function FormContact(props) {
 
 		console.log("handle", state.cnpjValid, state.emailValid);
 
-		if(validated == true && state.cnpjValid == false && state.emailValid == false) {
+		if(validated == true && state.cnpjValid == true && state.emailValid == true) {
 			let body = {
 				name: props.contactname,
 				phone: props.contactphone,
