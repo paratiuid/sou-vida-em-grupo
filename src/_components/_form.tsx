@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 
 import { maskcnpj, maskphone, validateCnpj, validateEmail } from "./_masks";
+import { gtmevent } from "../_components/_gtmEvents";
 
 import IconSuccess from '../assets/icon.success.svg'
 
@@ -111,10 +112,10 @@ function FormContact(props) {
 				setState({...state, loading: false});
 
 				if (response.ok) {
-					window.location.hash = "sucesso";
+					gtmevent({event: 'sucesso'});
 					setState({...state, success: true});
 				} else {
-					window.location.hash = "erro";
+					gtmevent({event: 'erro'});
 					setState({...state, error: true});
 				}
 			})

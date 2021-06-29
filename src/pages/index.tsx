@@ -16,6 +16,7 @@ import {
 
 import FormContact from "../_components/_form"
 import { maskphone } from "../_components/_masks";
+import { gtmevent } from "../_components/_gtmEvents";
 
 import SousegurosLogo from "../assets/logo.sou.seguros.svg"
 import IconSecurity from '../assets/icon.carbon.security.svg'
@@ -413,7 +414,7 @@ const Home = () => {
 				</Container>
 			</footer>
 
-			<ModalLead {...state} backdrop="static" show={modalShow} onShow={() => window.location.hash = "modal"} onExit={() => window.location.hash = ""} onHide={() => setModalShow(false)} />
+			<ModalLead {...state} backdrop="static" show={modalShow} onShow={() => gtmevent({event: 'modal'})} onHide={() => setModalShow(false)} />
 		</div>
 	)
 }
