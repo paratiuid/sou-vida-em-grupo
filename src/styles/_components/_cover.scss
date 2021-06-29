@@ -55,4 +55,18 @@
 	&--cards {
 		min-height: __remcalc(200);
 	}
+
+	&--carousel {
+		display: none;
+
+		@include media-breakpoint-only("xs") {
+			display: block;
+		}
+	}
+
+	&--noCarousel {
+		@include media-breakpoint-only("xs") {
+			display: none;
+		}
+	}
 }

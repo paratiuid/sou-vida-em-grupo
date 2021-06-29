@@ -11,7 +11,8 @@ import {
 	ListGroup,
 	Modal,
 	Form,
-	Button
+	Button,
+	Carousel
 } from 'react-bootstrap'
 
 import FormContact from "../_components/_form"
@@ -118,6 +119,28 @@ const Home = () => {
 		)
 	}
 
+	const renderCarousel = (card, index) => {
+		return (
+			<Carousel.Item key={index}>
+				<Card>
+					<Card.Body>
+						{card.text ?
+							<Card.Text className="sou-card--text">{card.text}</Card.Text>
+							:
+							null
+						}
+
+						{card.title ?
+							<Card.Title className="sou-card--title">{card.title}</Card.Title>
+							:
+							null
+						}
+					</Card.Body>
+				</Card>
+			</Carousel.Item>
+		)
+	}
+
 	const changeState = (event) => {
 		const value = event.target.value;
 
@@ -149,6 +172,12 @@ const Home = () => {
 		if(formValidity) {
 			setModalShow(true);
 		}
+	};
+
+	const [index, setIndex] = useState(0);
+
+	const handleSelect = (selectedIndex, e) => {
+		setIndex(selectedIndex);
 	};
 
 	return (
@@ -242,9 +271,12 @@ const Home = () => {
 						<Container>
 							<Row>
 								<Col xl={12}>
-									<CardDeck className="sou-card sou-card--deck">
+									<CardDeck className="sou-card sou-card--deck sou-cover--noCarousel">
 										{cardCover.map(renderCardOnlyText)}
 									</CardDeck>
+									<Carousel className="sou-cover--carousel" controls={false} activeIndex={index} onSelect={handleSelect}>
+										{cardCover.map(renderCarousel)}
+									</Carousel>
 								</Col>
 							</Row>
 						</Container>
