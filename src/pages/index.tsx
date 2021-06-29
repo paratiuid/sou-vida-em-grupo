@@ -137,7 +137,8 @@ const Home = () => {
     };
 
 	const handleKeyUp = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-		let input = e.currentTarget.name;
+		let t = e.currentTarget,
+			input = t.name;
 
 		if (input === "contactphone") {
 			maskphone(e);
@@ -146,15 +147,15 @@ const Home = () => {
 
 	const handleForm = async event => {
 		const form = event.currentTarget;
+		const formValidity = form.checkValidity();
+
 		event.preventDefault();
-
-		if (form.checkValidity() === false) {
+		if (formValidity === false) {
 			event.stopPropagation();
-		}
-
+		} 
 		setValidated(true);
 
-		if(validated == true) {
+		if(formValidity) {
 			setModalShow(true);
 		}
 	};
