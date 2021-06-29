@@ -14,14 +14,14 @@ export default async function assignContactToList(id) {
 		return rtn;
 	}
 
-	for(let i=0,l=automation.length;i<l;i++) {
-		if(!reqAutomation(id,automation[i])) {
-			rtn.status = false;
-			rtn.message = `Falhou ao registrar automação nº ${automation[i]}`;
+	// for(let i=0,l=automation.length;i<l;i++) {
+	// 	if(!reqAutomation(id,automation[i])) {
+	// 		rtn.status = false;
+	// 		rtn.message = `Falhou ao registrar automação nº ${automation[i]}`;
 
-			return rtn;
-		}
-	}
+	// 		return rtn;
+	// 	}
+	// }
 
     return rtn;
 }
