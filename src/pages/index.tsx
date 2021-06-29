@@ -69,7 +69,7 @@ const Home = () => {
 	})
 
 	const cardCover = [
-		{ title: "O nosso seguro de vida em grupo cobre morte por COVID-19", text: "Segurança empresarial"},
+		{ title: "O nosso seguro de vida em grupo cobre morte por \n COVID-19", text: "Segurança empresarial"},
 		{ title: "Escolher as coberturas adequadas para sua empresa", text: "Receba apoio para"},
 		{ title: "Apólice da empresa e de cada funcionário em tempo real", text: "Oferecemos"}
 	],
@@ -250,7 +250,7 @@ const Home = () => {
 					<Row className="sou-cover--cards align-items-md-end">
 						<Container>
 							<Row>
-								<Col xl={{span: 10, offset: 1}}>
+								<Col xl={12}>
 									<CardDeck className="sou-card sou-card--deck">
 										{cardCover.map(renderCardOnlyText)}
 									</CardDeck>
@@ -380,14 +380,14 @@ const Home = () => {
 						</Col>
 						<Col md={8}>
 							<div className="d-flex justify-content-around mb-2">
-								<img className="m-4" width={40} height={53} src={LogoPorto} />
-								<img className="m-4" width={72} height={75} src={LogoBradesco} />
-								<img className="m-4" width={41} height={41} src={LogoUnimed} />
+								<img className="m-4" width={40} height={53} src={LogoPorto} alt="Porto Seguro Seguros" />
+								<img className="m-4" width={72} height={75} src={LogoBradesco} alt="Bradesco Seguros" />
+								<img className="m-4" width={41} height={41} src={LogoUnimed} alt="Unimed Seguros" />
 							</div>
 							<div className="d-flex justify-content-around mb-2">
-								<img className="m-4" width={99} height={35} src={LogoCaixa} />
-								<img className="m-4" width={113} height={25} src={LogoBB} />
-								<img className="m-4" width={116} height={41} src={LogoSantander} />
+								<img className="m-4" width={99} height={35} src={LogoCaixa} alt="Caixa Seguradora" />
+								<img className="m-4" width={113} height={25} src={LogoBB} alt="BB Seguros" />
+								<img className="m-4" width={116} height={41} src={LogoSantander} alt="Santander Seguros" />
 							</div>
 						</Col>
 					</Row>
@@ -413,7 +413,7 @@ const Home = () => {
 				</Container>
 			</footer>
 
-			<ModalLead {...state} show={modalShow} onHide={() => setModalShow(false)} />
+			<ModalLead {...state} backdrop="static" show={modalShow} onHide={() => setModalShow(false)} />
 		</div>
 	)
 }

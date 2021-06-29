@@ -67,6 +67,7 @@ a {
 
 .btn {
 	position: relative;
+	font-weight: 700;
 }
 
 .btn-primary {
@@ -282,16 +283,20 @@ a {
 		.sou-features--title {
 			font-size: __remcalc(130);
 			line-height: 1em;
-			color: #1981E1;
+			color: #fff;
 			-webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
 			-webkit-text-stroke-width: 2.8px;
-			-webkit-text-stroke-color: #1981E1;
+			-webkit-text-stroke-color: #fff;
 			margin: 0;
 		}
 
 		.sou-features--subtitle {
 			font-size: __remcalc(26);
 			line-height: 1.1em;
+		}
+
+		.sou-card--image svg {
+			fill: #fff;
 		}
 	}
 }

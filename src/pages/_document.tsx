@@ -22,6 +22,15 @@ export default class MyDocument extends Document {
 				<meta property="og:title" content="t" key="Sou" />
 				<meta property="og:description" content="t" key="ogdesc" />
 
+				<link rel="preconnect" href="https://www.googletagmanager.com/" />
+				<link rel="dns-prefetch" href="https://www.googletagmanager.com/" />
+
+				<link rel="preconnect" href="https://connect.facebook.net" />
+				<link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+				<link rel="preconnect" href="https://static.hotjar.com" />
+				<link rel="dns-prefetch" href="https://static.hotjar.com" />
+
 				<link rel="preconnect" href="https://fonts.gstatic.com"/>
 				<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
 

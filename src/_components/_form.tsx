@@ -87,8 +87,6 @@ function FormContact(props) {
 
 		setValidatedModal(true);
 
-		console.log("handle", state.cnpjValid, state.emailValid);
-
 		if(validated == true && state.cnpjValid == true && state.emailValid == true) {
 			let body = {
 				name: props.contactname,

@@ -61,7 +61,7 @@
 		padding: 0;
 
 		&:not(.sou-bg--darkblue &)  {
-			padding: __remcalc(20);
+			padding: __remcalc(20) __remcalc(28);
 		}
 
 	}
