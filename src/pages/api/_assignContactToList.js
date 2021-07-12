@@ -14,6 +14,13 @@ export default async function assignContactToList(id) {
 		return rtn;
 	}
 
+	if(!reqTagContact(id)) {
+		rtn.status = false;
+		rtn.message = `Falhou ao registrar tag contact nº ${process.env.API_TAG}`;
+
+		return rtn;
+	}
+
 	// for(let i=0,l=automation.length;i<l;i++) {
 	// 	if(!reqAutomation(id,automation[i])) {
 	// 		rtn.status = false;
@@ -38,6 +45,34 @@ async function reqAssingToList(contactId) {
 
 	const req = await fetch(
         `${process.env.API_URL}/contactLists`,
+        {
+            method: 'POST',
+            body: JSON.stringify(reqObject),
+            headers: {
+                'Api-Token': process.env.API_TOKEN,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        }
+    )
+
+	if (req.status !== 201 && req.status !== 200) {
+		return false;
+    }
+
+	return true;
+}
+
+async function reqTagContact(contactId) {
+	let reqObject = {
+		"contactTag": {
+			"contact": contactId,
+			"tag": process.env.API_TAG
+		}
+	}
+
+	const req = await fetch(
+        `${process.env.API_URL}/contactTags`,
         {
             method: 'POST',
             body: JSON.stringify(reqObject),
