@@ -14,7 +14,8 @@ export default async function assignContactToList(id) {
 		return rtn;
 	}
 
-	if(!reqTagContact(id)) {
+	let tagContact = await reqTagContact(id);
+	if(!tagContact) {
 		rtn.status = false;
 		rtn.message = `Falhou ao registrar tag contact nº ${process.env.API_TAG}`;
 
