@@ -27,4 +27,11 @@
 		right: __remcalc(15);
 		top: -50px;
 	}
+
+	.alert {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0 10px;
+	}
 }
