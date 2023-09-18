@@ -67,6 +67,13 @@ function FormContact(props) {
 		}
     };
 
+	const handleCNPJBlur = (event) => {
+		let t = event.currentTarget;
+		let input = t.name;
+
+		setState({...state, cnpjValid: validateCnpj(t.value)});
+	}
+
 	const handleSubmit = async event => {
 		event.preventDefault();
 		const form = event.currentTarget;
@@ -152,6 +159,7 @@ function FormContact(props) {
 								placeholder="CNPJ"
 								value={state.contactcnpj}
 								onChange={changeState}
+								onBlur={handleCNPJBlur}
 								onKeyUp={handleKeyUp}
 								isInvalid={!state.cnpjValid}
 								required
